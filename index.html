@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JPM Grup WA Premium | Akses Grup Eksklusif</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #075e54, #128c7e);
+      padding: 20px;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+
+    .header {
+      text-align: center;
+      color: white;
+      margin-bottom: 40px;
+    }
+
+    .header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    }
+
+    .header p {
+      font-size: 1.2rem;
+      opacity: 0.95;
+    }
+
+    .badge-cuan {
+      background: #fbbf24;
+      color: #1f2937;
+      display: inline-block;
+      padding: 8px 20px;
+      border-radius: 50px;
+      font-weight: bold;
+      margin-top: 15px;
+    }
+
+    .kategori {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+    }
+
+    .kategori-btn {
+      background: rgba(255,255,255,0.2);
+      backdrop-filter: blur(10px);
+      border: none;
+      padding: 10px 25px;
+      border-radius: 50px;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+      font-size: 1rem;
+    }
+
+    .kategori-btn.active, .kategori-btn:hover {
+      background: #25d366;
+      color: #075e54;
+    }
+
+    .grid-grup {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 25px;
+      margin-bottom: 40px;
+    }
+
+    .card-grup {
+      background: white;
+      border-radius: 20px;
+      padding: 20px;
+      transition: 0.3s;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      cursor: pointer;
+    }
+
+    .card-grup:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+    }
+
+    .icon-grup {
+      font-size: 3rem;
+      margin-bottom: 10px;
+    }
+
+    .nama-grup {
+      font-size: 1.4rem;
+      font-weight: bold;
+      color: #075e54;
+      margin-bottom: 5px;
+    }
+
+    .deskripsi {
+      color: #666;
+      margin: 10px 0;
+      font-size: 0.9rem;
+    }
+
+    .info {
+      display: flex;
+      justify-content: space-between;
+      margin: 15px 0;
+      font-size: 0.85rem;
+      color: #888;
+    }
+
+    .btn-join {
+      background: #25d366;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 50px;
+      width: 100%;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.2s;
+      font-size: 1rem;
+    }
+
+    .btn-join:hover {
+      background: #128c7e;
+    }
+
+    /* Modal QRIS */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.8);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background: white;
+      max-width: 500px;
+      width: 90%;
+      border-radius: 30px;
+      padding: 25px;
+      text-align: center;
+      position: relative;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+    .close-modal {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      font-size: 28px;
+      cursor: pointer;
+      color: #666;
+    }
+
+    .qris-img {
+      width: 100%;
+      max-width: 300px;
+      margin: 20px auto;
+      display: block;
+      border-radius: 20px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+    }
+
+    .info-akun {
+      background: #f0fdf4;
+      padding: 15px;
+      border-radius: 15px;
+      margin: 15px 0;
+      text-align: left;
+    }
+
+    .btn-konfirmasi {
+      background: #128c7e;
+      color: white;
+      padding: 12px;
+      border: none;
+      border-radius: 50px;
+      width: 100%;
+      font-weight: bold;
+      margin-top: 10px;
+      cursor: pointer;
+    }
+
+    .btn-wa {
+      background: #25d366;
+    }
+
+    .btn-telegram {
+      background: #0088cc;
+    }
+
+    .btn-ig {
+      background: #e4405f;
+    }
+
+    .contact-buttons {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin: 15px 0;
+    }
+
+    .contact-buttons a {
+      flex: 1;
+      padding: 10px;
+      border-radius: 50px;
+      text-decoration: none;
+      color: white;
+      font-weight: bold;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+
+    .form-tambah, .how-to-section {
+      background: white;
+      border-radius: 20px;
+      padding: 30px;
+      margin-top: 30px;
+    }
+
+    .how-to-section h3 {
+      color: #075e54;
+      margin-bottom: 15px;
+    }
+
+    .step {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 20px;
+      padding: 10px;
+      background: #f9fafb;
+      border-radius: 15px;
+    }
+
+    .step-number {
+      width: 40px;
+      height: 40px;
+      background: #25d366;
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+
+    footer {
+      text-align: center;
+      color: white;
+      margin-top: 40px;
+      padding: 20px;
+      opacity: 0.8;
+    }
+
+    @media (max-width: 768px) {
+      .grid-grup {
+        grid-template-columns: 1fr;
+      }
+      .header h1 {
+        font-size: 1.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h1>📱 JPM Grup WA Premium</h1>
+    <p>Grup eksklusif • Akses terbatas • Cuan berlimpah</p>
+    <div class="badge-cuan">💰 HANYA Rp1.000 - Akses Seumur Hidup!</div>
+  </div>
+
+  <!-- Filter Kategori -->
+  <div class="kategori">
+    <button class="kategori-btn active" data-kategori="semua">Semua Grup</button>
+    <button class="kategori-btn" data-kategori="bisnis">Bisnis & Jualan</button>
+    <button class="kategori-btn" data-kategori="investasi">Investasi & Crypto</button>
+    <button class="kategori-btn" data-kategori="edukasi">Edukasi & Kursus</button>
+    <button class="kategori-btn" data-kategori="hiburan">Hiburan & Komunitas</button>
+  </div>
+
+  <!-- Daftar Grup (SEMUA LINK SAMA) -->
+  <div class="grid-grup" id="daftarGrup"></div>
+
+  <!-- Cara Dapat Link -->
+  <div class="how-to-section">
+    <h3>📌 Cara Dapat Akses Grup Premium (Hanya Rp1.000)</h3>
+    <div class="step">
+      <div class="step-number">1</div>
+      <div>Scan QRIS di bawah atau transfer ke nomor yang tersedia</div>
+    </div>
+    <div class="step">
+      <div class="step-number">2</div>
+      <div>Kirim <strong>Rp1.000</strong> (satu ribu rupiah saja)</div>
+    </div>
+    <div class="step">
+      <div class="step-number">3</div>
+      <div>Konfirmasi pembayaran via WA/Telegram/Instagram dengan mengirimkan bukti transfer</div>
+    </div>
+    <div class="step">
+      <div class="step-number">4</div>
+      <div>Link grup akan dikirim langsung oleh admin</div>
+    </div>
+  </div>
+
+  <!-- QRIS dan Kontak -->
+  <div class="form-tambah" id="pembayaran">
+    <h3>💳 Scan QRIS - Bayar Rp1.000</h3>
+    <img src="https://files.catbox.moe/8izjx2.jpg" alt="QRIS Dana" class="qris-img" style="max-width: 280px;" onerror="this.src='https://placehold.co/300x300?text=QRIS+DANA&font=montserrat'">
+    
+    <div class="info-akun">
+      <p><strong>📱 Atau transfer manual:</strong></p>
+      <p>Dana / QRIS: <strong>085936682759</strong> (Hirrvon)</p>
+      <p>Bank Jago / dll: Scan QRIS di atas</p>
+      <p style="font-size: 12px; margin-top: 10px;">*Pastikan transfer <strong>Rp1.000</strong> sesuai</p>
+    </div>
+
+    <h4 style="margin: 15px 0 10px;">📢 Konfirmasi Pembayaran ke:</h4>
+    <div class="contact-buttons">
+      <a href="https://wa.me/6285936682759?text=Halo%20kak%2C%20saya%20sudah%20bayar%20Rp1.000%20untuk%20akses%20grup%20WA.%20Bukti%3A%20" target="_blank" class="btn-wa" style="background:#25d366;">💚 WhatsApp</a>
+      <a href="https://t.me/Hirrvon" target="_blank" class="btn-telegram" style="background:#0088cc;">✈️ Telegram</a>
+      <a href="https://instagram.com/hirrvontrinity" target="_blank" class="btn-ig" style="background:#e4405f;">📷 Instagram</a>
+    </div>
+    <p style="text-align: center; margin-top: 10px;">Atau DM: <strong>@hirrvontrinity</strong> / <strong>محمد طاهر</strong></p>
+    <button class="btn-konfirmasi" onclick="window.location.href='https://wa.me/6285936682759?text=Halo%20kak%2C%20saya%20sudah%20bayar%20Rp1.000%20untuk%20akses%20grup%20WA.%20Bukti%3A%20'">✅ Klik di sini untuk konfirmasi via WhatsApp</button>
+  </div>
+
+  <footer>
+    <p>© 2025 JPM Grup Premium | Akses grup eksklusif | Hanya Rp1.000 seumur hidup</p>
+    <p style="font-size: 12px; margin-top: 10px;">⚠️ Setelah konfirmasi, link grup akan dikirim dalam max 1x24 jam</p>
+  </footer>
+</div>
+
+<script>
+  // SATU LINK GRUP UNTUK SEMUA
+  const TARGET_LINK = "https://chat.whatsapp.com/ILWplAjaar61CDgq3xffhP";
+  
+  // Data grup (semua mengarah ke link yang sama)
+  const grupData = [
+    { id: 1, nama: "Grup Jualan Cuan 2025", deskripsi: "Tempat jualan pulsa, kuota, emas, dan afiliasi", kategori: "bisnis", anggota: "2.3k anggota", icon: "🛍️" },
+    { id: 2, nama: "Saham & Kripto Signal", deskripsi: "Signal saham, crypto, reksadana terupdate", kategori: "investasi", anggota: "1.8k anggota", icon: "📈" },
+    { id: 3, nama: "Belajar AI & ChatGPT Pro", deskripsi: "Tutorial AI, prompt engineering, prompt generator", kategori: "edukasi", anggota: "3.1k anggota", icon: "🤖" },
+    { id: 4, nama: "Komunitas Gamer Indo", deskripsi: "Cari teman push rank ML, PUBG, FF", kategori: "hiburan", anggota: "5.2k anggota", icon: "🎮" },
+    { id: 5, nama: "UMKM Go Digital", deskripsi: "Sharing strategi jualan online, WA blast", kategori: "bisnis", anggota: "1.5k anggota", icon: "🏪" },
+    { id: 6, nama: "NFT & Web3 Warriors", deskripsi: "Diskusi NFT, web3, game crypto", kategori: "investasi", anggota: "987 anggota", icon: "🖼️" },
+    { id: 7, nama: "Kursus Desain Grafis", deskripsi: "Belajar Photoshop, Canva, AI", kategori: "edukasi", anggota: "2.2k anggota", icon: "🎨" },
+    { id: 8, nama: "Crypto Airdrop Hunter", deskripsi: "Info airdrop, node, testnet terbaru", kategori: "investasi", anggota: "4.1k anggota", icon: "🪂" }
+  ];
+
+  function renderGrup(filterKategori = "semua") {
+    const grid = document.getElementById("daftarGrup");
+    let filtered = grupData;
+    if (filterKategori !== "semua") {
+      filtered = grupData.filter(grup => grup.kategori === filterKategori);
+    }
+
+    if (filtered.length === 0) {
+      grid.innerHTML = `<div style="text-align:center; padding:40px; background:white; border-radius:20px;">😢 Belum ada grup di kategori ini.</div>`;
+      return;
+    }
+
+    grid.innerHTML = filtered.map(grup => `
+      <div class="card-grup" data-kategori="${grup.kategori}" onclick="showPaymentModal()">
+        <div class="icon-grup">${grup.icon}</div>
+        <div class="nama-grup">${escapeHtml(grup.nama)}</div>
+        <div class="deskripsi">${escapeHtml(grup.deskripsi)}</div>
+        <div class="info">
+          <span>👥 ${grup.anggota}</span>
+          <span>🏷️ ${grup.kategori.toUpperCase()}</span>
+          <span>💰 Rp1.000</span>
+        </div>
+        <button class="btn-join" onclick="event.stopPropagation(); showPaymentModal()">
+          🔓 Beli Akses (Rp1.000)
+        </button>
+      </div>
+    `).join('');
+  }
+
+  function escapeHtml(str) {
+    return str.replace(/[&<>]/g, function(m) {
+      if (m === '&') return '&amp;';
+      if (m === '<') return '&lt;';
+      if (m === '>') return '&gt;';
+      return m;
+    });
+  }
+
+  // Modal / scroll ke pembayaran
+  function showPaymentModal() {
+    // Smooth scroll ke section pembayaran
+    document.getElementById('pembayaran').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    // Flash efek
+    const paymentSection = document.getElementById('pembayaran');
+    paymentSection.style.transition = '0.3s';
+    paymentSection.style.boxShadow = '0 0 0 3px #25d366';
+    setTimeout(() => {
+      paymentSection.style.boxShadow = 'none';
+    }, 1000);
+  }
+
+  // Filter event
+  document.querySelectorAll('.kategori-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+      document.querySelectorAll('.kategori-btn').forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+      const kategori = this.getAttribute('data-kategori');
+      renderGrup(kategori);
+    });
+  });
+
+  // Initial render
+  renderGrup("semua");
+</script>
+</body>
+</html>
